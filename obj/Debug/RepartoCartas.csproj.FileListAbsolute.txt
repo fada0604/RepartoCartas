@@ -1,0 +1,12 @@
+c:\users\francia diaz\documents\visual studio 2015\Projects\RepartoCartas\bin\Debug\RepartoCartas.exe.config
+c:\users\francia diaz\documents\visual studio 2015\Projects\RepartoCartas\bin\Debug\RepartoCartas.exe
+c:\users\francia diaz\documents\visual studio 2015\Projects\RepartoCartas\bin\Debug\RepartoCartas.pdb
+c:\users\francia diaz\documents\visual studio 2015\Projects\RepartoCartas\obj\Debug\RepartoCartas.csprojResolveAssemblyReference.cache
+c:\users\francia diaz\documents\visual studio 2015\Projects\RepartoCartas\obj\Debug\RepartoCartas.exe
+c:\users\francia diaz\documents\visual studio 2015\Projects\RepartoCartas\obj\Debug\RepartoCartas.pdb
+C:\Users\IBM_ADMIN\Documents\Visual Studio 2015\Projects\RepartoCartas\bin\Debug\RepartoCartas.exe.config
+C:\Users\IBM_ADMIN\Documents\Visual Studio 2015\Projects\RepartoCartas\obj\Debug\RepartoCartas.exe
+C:\Users\IBM_ADMIN\Documents\Visual Studio 2015\Projects\RepartoCartas\obj\Debug\RepartoCartas.pdb
+C:\Users\IBM_ADMIN\Documents\Visual Studio 2015\Projects\RepartoCartas\bin\Debug\RepartoCartas.exe
+C:\Users\IBM_ADMIN\Documents\Visual Studio 2015\Projects\RepartoCartas\bin\Debug\RepartoCartas.pdb
+C:\Users\IBM_ADMIN\Documents\Visual Studio 2015\Projects\RepartoCartas\obj\Debug\RepartoCartas.csprojResolveAssemblyReference.cache
