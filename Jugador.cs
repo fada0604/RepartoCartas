@@ -16,12 +16,36 @@ namespace RepartoCartas
             set { _ListaCartasJugador = value; }
         }
 
-        private Cantos _CantoJugador;
+        private Cantos.Canto _CantoJugador;
 
-        public Cantos CantoJugador
+        public Cantos.Canto CantoJugador
         {
             get { return _CantoJugador; }
             set { _CantoJugador = value; }
+        }
+
+        private int _PuntuacionCanto;
+
+        public int PuntuacionCanto
+        {
+            get { return _PuntuacionCanto; }
+            set { _PuntuacionCanto = value; }
+        }
+
+        private bool _Mano;
+
+        public bool Mano
+        {
+            get { return _Mano; }
+            set { _Mano = value; }
+        }
+
+        private bool _CantoGanador;
+
+        public bool CantoGanador
+        {
+            get { return _CantoGanador; }
+            set { _CantoGanador = value; }
         }
 
 

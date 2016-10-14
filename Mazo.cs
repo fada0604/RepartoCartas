@@ -12,9 +12,9 @@ namespace RepartoCartas
         List<byte> almacenDeNumeroAleatorios = new List<byte>();
         public Mazo()
         {
-            
+
         }
-        
+
         private List<Cartas> _objListaCartas;
 
         public List<Cartas> objListaCartas
@@ -36,24 +36,29 @@ namespace RepartoCartas
 
                 }
             }
-            
+
         }
 
         public Cartas ExtraerMazo()
         {
-            Random objRandom = new Random();
-            Byte numeroAleatorio = 0;
-            do
-            {
-                numeroAleatorio = (byte)objRandom.Next(1, TotalCartas);
-            } while (almacenDeNumeroAleatorios.Contains(numeroAleatorio));
-            
-            almacenDeNumeroAleatorios.Add(numeroAleatorio);
-            
-            var CartaAEliminar = objListaCartas[numeroAleatorio];
+            Cartas CartaSeleccionada = new Cartas();
 
-            var CartaSeleccionada = objListaCartas.Where(a=> a.Palo == CartaAEliminar.Palo && a.Valor == CartaAEliminar.Valor).FirstOrDefault();
-            
+            if (almacenDeNumeroAleatorios.Count < TotalCartas)
+            {
+                Random objRandom = new Random();
+                Byte numeroAleatorio = 0;
+                do
+                {
+                    numeroAleatorio = (byte)objRandom.Next(1, TotalCartas);
+                } while (almacenDeNumeroAleatorios.Contains(numeroAleatorio));
+
+                almacenDeNumeroAleatorios.Add(numeroAleatorio);
+
+                var CartaAEliminar = objListaCartas[numeroAleatorio];
+
+                CartaSeleccionada = objListaCartas.Where(a => a.Palo == CartaAEliminar.Palo && a.Valor == CartaAEliminar.Valor).FirstOrDefault();
+            }
+
             return CartaSeleccionada;
         }
 
