@@ -42,18 +42,94 @@ namespace RepartoCartas
             {
                 //Si es registro
                 if (CantoMayor == Canto.Registro)
-                    //Saca quien es la mano y establece la propiedad CantoGanador a true
-                    JugadorGanadorCanto.ForEach(a => { if (a.Mano) a.CantoGanador = true; });
+                    ValidarRegistro(JugadorGanadorCanto);
 
                 //Si es vijia
-                if (CantoMayor == Canto.Vijia) {
+                if (CantoMayor == Canto.Vijia)
+                    ValidarVijia(JugadorGanadorCanto);
+               
 
-                }
-              
-                
+
 
             }
         }
-      
+
+        private static void ValidarVijia(List<Jugador> JugadorGanadorCanto)
+        {
+            List<CantoPorJugador> objCantosPorJugador = new List<CantoPorJugador>();
+            //Saber que carta se repite por jugador
+            foreach (var item in JugadorGanadorCanto)
+            {
+                //Se agrupa y se cuenta las cartas que tienen dos cantidades
+                var cantidadCartasRepetidas = item.ListaCartasJugador.GroupBy(a => a.Valor).Select(b =>
+                    new { Count = b.Count(), Val = b.Key, item.idJugador }).Where(c => c.Count == 2);
+                //Se llena una lista para gestionar las cantidades y cartas repetidas por el Id del jugador
+                objCantosPorJugador.Add(new CantoPorJugador
+                {
+                    idJugador = item.idJugador,
+                    ValorCarta = (int)cantidadCartasRepetidas.Select(a => a.Val).FirstOrDefault(),
+                    CantidadCartaRepetida = (int)cantidadCartasRepetidas.Select(a => a.Count).FirstOrDefault()
+                });
+            }
+
+            //Se saca cual es la carta mayor que ganó el vijia
+            var CartaGanadoraVijia = objCantosPorJugador.Max(b => b.ValorCarta);
+            //Se sacan los jugadores que tienen esa carta
+            var JugadorGanadorVijia = objCantosPorJugador.Where(a => a.ValorCarta == CartaGanadoraVijia).ToList();
+
+            //Si hay mas de un jugador que tiene las mismas cartas...
+            if (JugadorGanadorVijia.Count > 1)
+            {
+                var result = from j in JugadorGanadorVijia
+                             join cn in JugadorGanadorCanto on j.idJugador equals cn.idJugador
+                             where (cn.Mano)
+                             select new { idJugador = j.idJugador };
+            }
+            else
+            {
+               
+            }
+        }
+
+        private static void ValidarRegistro(List<Jugador> JugadorGanadorCanto)
+        {
+            //Saca quien es la mano y establece la propiedad CantoGanador a true
+            JugadorGanadorCanto.ForEach(a =>
+            {
+                if (a.Mano)
+                    a.CantoGanador = true;
+                else
+                    a.PuntuacionCanto -= (int)Canto.Registro;
+            });
+        }
+    }
+
+    public class CantoPorJugador
+    {
+        private int _idJugador;
+
+        public int idJugador
+        {
+            get { return _idJugador; }
+            set { _idJugador = value; }
+        }
+
+        private int _ValorCarta;
+
+        public int ValorCarta
+        {
+            get { return _ValorCarta; }
+            set { _ValorCarta = value; }
+        }
+
+        private int _CantidadCartaRepetida;
+
+        public int CantidadCartaRepetida
+        {
+            get { return _CantidadCartaRepetida; }
+            set { _CantidadCartaRepetida = value; }
+        }
+
+
     }
 }

@@ -8,6 +8,14 @@ namespace RepartoCartas
 {
     public class Jugador
     {
+        private int _idJugador;
+
+        public int idJugador
+        {
+            get { return _idJugador; }
+            set { _idJugador = value; }
+        }
+
         private List<Cartas> _ListaCartasJugador;
 
         public List<Cartas> ListaCartasJugador
