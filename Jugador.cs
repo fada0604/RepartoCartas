@@ -56,6 +56,16 @@ namespace RepartoCartas
             set { _CantoGanador = value; }
         }
 
+        private int _PosicionMesa;
+        /// <summary>
+        /// Siempre la mano sera el 1
+        /// </summary>
+        public int PosicionMesa
+        {
+            get { return _PosicionMesa; }
+            set { _PosicionMesa = value; }
+        }
+
 
     }
 }

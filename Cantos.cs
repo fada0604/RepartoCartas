@@ -9,10 +9,11 @@ namespace RepartoCartas
 {
     public class Cantos
     {
-        public enum Canto: byte { RondaUno = 1, RondaDos, RondaTres, RondaCuatro, Tribilin, Patrulla, Vijia, Registro }
+        public enum Canto: byte { RondaUno = 1, RondaDos, RondaTres, RondaCuatro, Trivilin, Patrulla, Vijia, Registro }
 
         public void EstablecerCantoGanador(List<Jugador>objListaJugadores)
         {
+            objListaJugadores.OrderBy(a=> a.PosicionMesa);
             var objListaDeCantos = new List<Canto>();
             //Establecer el canto por jugador y su puntuacion
             objListaJugadores.ForEach(b => {
@@ -33,10 +34,17 @@ namespace RepartoCartas
 
             //Si hay mas de un jugador con el mismo canto....
             if (JugadorGanadorCanto.Count > 1)
-                ResolverCantosRepetidos(JugadorGanadorCanto, CantoMayor);
+                ResolverCantosRepetidos(JugadorGanadorCanto, CantoMayor, objListaJugadores);
+            else
+                objListaJugadores.ForEach(a=> {
+                    if (a.idJugador == JugadorGanadorCanto.Select(b => b.idJugador).FirstOrDefault())
+                        a.CantoGanador = true;
+                });
+
+            QuitarPuntosCantosPerdedores(objListaJugadores);
         }
 
-        private static void ResolverCantosRepetidos(List<Jugador> JugadorGanadorCanto, Canto paramCanto)
+        private static void ResolverCantosRepetidos(List<Jugador> JugadorGanadorCanto, Canto paramCanto, List<Jugador> objListaJugadores)
         {
             //Ingresar la suma de las cartas a un diccionario por jugador
             Dictionary<int, int> sumaCartas = new Dictionary<int, int>();
@@ -50,25 +58,26 @@ namespace RepartoCartas
             //Saber el jugador ganador
             var ganador = JugadorGanadorCanto.Where(a => a.ListaCartasJugador.Sum(b => (int)b.Valor) == cartasMayores).ToList();
 
-            //Si hay mas de un ganador, es decir tienen las mismas cartas gana la mano
-            if (ganador.Count > 1) {
+            //Si hay mas de un ganador, es decir tienen las mismas cartas gana la derecha de la mano
+            if (ganador.Count > 1)
+                JugadorGanadorCanto.ForEach(a=> {
+                    if (sumaCartas.ContainsKey(a.idJugador) && a.PosicionMesa > 1 && (JugadorGanadorCanto.Where(b=>b.CantoGanador).Count() == 0))
+                        a.CantoGanador = true;
+                });
+            else 
                 JugadorGanadorCanto.ForEach(a =>
                 {
-                    if (a.Mano && sumaCartas.ContainsKey(a.idJugador))
+                    if (a.idJugador == ganador.Select(b=> b.idJugador).FirstOrDefault())
                         a.CantoGanador = true;
-                    else
-                        a.PuntuacionCanto -= (int)paramCanto;
                 });
-            }
-            else {
-                JugadorGanadorCanto.ForEach(a =>
-                {
-                    if (a.Mano && sumaCartas.ContainsKey(a.idJugador))
-                        a.CantoGanador = true;
-                    else
-                        a.PuntuacionCanto -= (int)paramCanto;
-                });
-            }
+        }
+
+        private static void QuitarPuntosCantosPerdedores(List<Jugador> objListaJugadores)
+        {
+            objListaJugadores.ForEach(a => {
+                if (!a.CantoGanador && a.PuntuacionCanto != 0)
+                    a.PuntuacionCanto -= (int)a.CantoJugador;
+            });
         }
     }
 }

@@ -39,17 +39,17 @@ namespace RepartoCartas
                                                   new Cartas { Valor = Cartas.Valores.Cuatro, Palo = Cartas.Palos.Bastos },
                                                   new Cartas { Valor = Cartas.Valores.Cinco, Palo = Cartas.Palos.Bastos }};
 
-            var ListaCartas2 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Cuatro, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Once, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Doce, Palo = Cartas.Palos.Bastos }};
+            var ListaCartas2 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Dos, Palo = Cartas.Palos.Bastos },
+                                                  new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos },
+                                                  new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos }};
 
-            var ListaCartas3 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Seis, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Cinco, Palo = Cartas.Palos.Bastos }};
+            var ListaCartas3 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Diez, Palo = Cartas.Palos.Bastos },
+                                                  new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos },
+                                                  new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos }};
             var ListJugadores = new List<Jugador>();
-            ListJugadores.Add(new Jugador { idJugador = 1, ListaCartasJugador = ListaCartas1, Mano=true });
-            ListJugadores.Add(new Jugador { idJugador = 2, ListaCartasJugador = ListaCartas2 });
-            ListJugadores.Add(new Jugador { idJugador = 3, ListaCartasJugador = ListaCartas3 });
+            ListJugadores.Add(new Jugador { idJugador = 1, ListaCartasJugador = ListaCartas1, Mano = true, PosicionMesa = 1 });
+            ListJugadores.Add(new Jugador { idJugador = 2, ListaCartasJugador = ListaCartas2, PosicionMesa = 2 });
+            ListJugadores.Add(new Jugador { idJugador = 3, ListaCartasJugador = ListaCartas3, PosicionMesa = 3 });
 
             var objCanto = new Cantos();
             objCanto.EstablecerCantoGanador(ListJugadores);
