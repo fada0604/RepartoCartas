@@ -35,13 +35,13 @@ namespace RepartoCartas
             //    Console.WriteLine("\n");
             //}
 
-            var ListaCartas1 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Uno, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Dos, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Dos, Palo = Cartas.Palos.Bastos }};
+            var ListaCartas1 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos },
+                                                  new Cartas { Valor = Cartas.Valores.Cuatro, Palo = Cartas.Palos.Bastos },
+                                                  new Cartas { Valor = Cartas.Valores.Cinco, Palo = Cartas.Palos.Bastos }};
 
             var ListaCartas2 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Cuatro, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos },
-                                                  new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos }};
+                                                  new Cartas { Valor = Cartas.Valores.Once, Palo = Cartas.Palos.Bastos },
+                                                  new Cartas { Valor = Cartas.Valores.Doce, Palo = Cartas.Palos.Bastos }};
 
             var ListaCartas3 = new List<Cartas> { new Cartas { Valor = Cartas.Valores.Tres, Palo = Cartas.Palos.Bastos },
                                                   new Cartas { Valor = Cartas.Valores.Seis, Palo = Cartas.Palos.Bastos },
@@ -52,7 +52,7 @@ namespace RepartoCartas
             ListJugadores.Add(new Jugador { idJugador = 3, ListaCartasJugador = ListaCartas3 });
 
             var objCanto = new Cantos();
-            objCanto.ObtenerCantoGanador(ListJugadores);
+            objCanto.EstablecerCantoGanador(ListJugadores);
            
 
             Console.Read();

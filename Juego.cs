@@ -71,12 +71,7 @@ namespace RepartoCartas
         public void ObtenerCanto()
         {
             Cantos objCantos = new Cantos();
-            for (int i = 0; i < ListaJugadores.Count; i++)
-            {
-                ListaJugadores[i].CantoJugador = objCantos.ObtenerCanto(ListaJugadores[i].ListaCartasJugador);
-            }
-
-            objCantos.ObtenerCantoGanador(ListaJugadores);
+            objCantos.EstablecerCantoGanador(ListaJugadores);
         }
     }
 }
